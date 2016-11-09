@@ -1,5 +1,10 @@
 // Task 1: Create a function that randomly chooses among 'rock', 'paper', or 'scissors'.
-var generateComputerChoice = function () {
+var generateComputerChoice = function() {
+    var myArray = ["rock", "paper", "scissors"];
+    var myNumber = Math.floor(Math.random() * 3);
+    var computerChoice = myArray[myNumber];
+    return computerChoice;
+  
     // Task 1, Step 1: Create an array with three elements ("rock", "paper" and "scissors").
 
     // Task 1, Step 2: Use the JavaScript Math function to generate a random whole
@@ -10,39 +15,122 @@ var generateComputerChoice = function () {
 
     // Task 1, Step 4: return this new value
 };
-
+ var wins = 0 ;
 // Task 2: Create a function that compares the userChoice and the computerChoice
 // to decide who won.
-var pickWinner = function (userChoice, computerChoice) {
+var pickWinner = function(userChoice, computerChoice) {
     console.log("user choice: " + userChoice);
     console.log("computer choice: " + computerChoice);
+    var winner;
+    if (userChoice == computerChoice) {
+        winner = "DRAW";
+    }
+    else if (userChoice === "rock" && computerChoice === "scissors") {
+        winner = "user";
+
+    }
+    else if (userChoice === "rock" && computerChoice === "paper") {
+        winner = "computer";
+    }
+    else if (userChoice === "scissors" && computerChoice === "paper") {
+        winner = "user";
+    }
+    else if (userChoice === "scissors" && computerChoice === "rock") {
+        winner = "computer";
+    }
+    else if (userChoice === "paper" && computerChoice === "scissors") {
+        winner = "computer";
+    }
+    else if (userChoice === "paper" && computerChoice === "rock") {
+        winner = "user";
+
+
+    }
+    
+    $("#winner").html(winner);
+    $("#computer-choice").html(computerChoice);
+    console.log(" winner: " + winner);
+
+    // if (userChoice = parseInt(rock) == computerChoice = parseInt(scissors));//
     // Task 2, Step 1: Create an "if/else if/else" statement that compares the
     // userChoice and computerChoice under any possible game outcome.
 
     // Task 2, Step 2: Depending on who is the winner of the game console.log
     // either "user wins", "computer wins" or "draw"
 
+
     // Task 4: Show `computerChoice` in HTML after the words "Computer's choice:"
     // Task 5: Show the winner in HTML after the word "Winner:"
 };
+$("#paper").click(function() {
+    console.log("paper");
+});
+
+$("#rock").click(function() {
+    console.log("rock");
+});
+$("#scissors").click(function() {
+    console.log("scissors");
+});
 
 /* DOCUMENT READY: Everything inside this function will happen after
    the user's browser has finished loading the webpage. */
+var userChoice = null;
+var computerChoice = generateComputerChoice();
+
 $(document).ready(function() {
+    $("#rock").click(function() {
+        userChoice= "rock";
+        computerChoice = generateComputerChoice();
+        pickWinner(userChoice, computerChoice);
+
+    });
+    $("#paper").click(function() {
+         userChoice= "paper";
+        computerChoice = generateComputerChoice();
+        pickWinner(userChoice, computerChoice);
+        
+    });
+    $("#scissors").click(function() {
+         userChoice= "scissors";
+        computerChoice = generateComputerChoice();
+        pickWinner(userChoice, computerChoice);
+    });
+
+
+
 
     // This line calls the `generateComputerChoice` function and assigns its
     // return value to the variable `computerChoice`.
     var computerChoice = generateComputerChoice();
+    // console.log(computerChoice);
 
     // This line sets `userChoice` variable to 'rock'. This value can be changed
     // manually when testing in the console.
-    var userChoice = "rock";
+    //var userChoice = "rock";
     // Task 3: To be completed AFTER this game functions in the console.
     // Set `userChoice` to "null" and create a click handler that changes the
     // value based on the item the user clicks on the HTML page.
 
+
     // This line calls the `pickWinner` function with the `userChoice` variable
     // and the `computerChoice` variable.
-    pickWinner(userChoice, computerChoice);
+    //pickWinner(userChoice, computerChoice);//
 
 });
+
+
+
+/*
+
+when the page loads
+
+    -
+    -
+    -
+when rock is clicked
+    - generate a choice for the computer
+    - set the user choice to rock
+    - pick a winner between the user and computer (show the result on the screen)
+
+*/
